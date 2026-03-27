@@ -16,7 +16,7 @@ class HomeVoirPlusModel {
       title: json['title'] as String,
       imageUrl: json['images']['jpg']['large_image_url'] as String,
       description: json['synopsis'] as String,
-      score: json['score'] as double,
+      score: (json['score'] as num).toDouble(),
     );
   }
 }

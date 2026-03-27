@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manga/features/home/data/api/home_voir_plus_api.dart';
+import 'package:manga/features/home/presentation/anime_details.dart';
 
 class HomeVoirPlus extends StatefulWidget {
   const HomeVoirPlus({super.key});
@@ -31,49 +32,59 @@ class _HomeVoirPlusState extends State<HomeVoirPlus> {
             itemCount: data.length,
             itemBuilder: (context, index) {
               final anime = data[index];
-              return Container(
-                margin: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Image.network(
-                      anime.imageUrl,
-                      width: 100,
-                      height: 150,
-                      fit: BoxFit.cover,
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            anime.title,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                                size: 16,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                "${anime.score}/10",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            anime.description,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AnimeDetails(anime: anime)),
+                  );
+                },
+                child: Container(
+                  margin: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Image.network(
+                        anime.imageUrl,
+                        width: 100,
+                        height: 150,
+                        fit: BoxFit.cover,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              anime.title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 16,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  "${anime.score}/10",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              anime.description,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
