@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:manga/features/home/data/models/home_voir_plus_model.dart';
 
 class AnimeDetails extends StatefulWidget {
-  final HomeVoirPlusModel animedeatils;
+  final HomeVoirPlusModel animedetails;
 
-  const AnimeDetails({super.key, required this.animedeatils});
+  const AnimeDetails({super.key, required this.animedetails, required HomeVoirPlusModel anime});
 
   @override
   State<AnimeDetails> createState() => AnimeDetailsState();
@@ -26,7 +26,7 @@ class AnimeDetailsState extends State<AnimeDetails> {
                 children: [
                   Positioned.fill(
                     child: Image.network(
-                      widget.animedeatils.imageUrl,
+                      widget.animedetails.imageUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -68,7 +68,7 @@ class AnimeDetailsState extends State<AnimeDetails> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.animedeatils.title,
+                          widget.animedetails.title,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 24,
@@ -93,7 +93,7 @@ class AnimeDetailsState extends State<AnimeDetails> {
                             Icon(Icons.star, color: Colors.amber, size: 16),
                             SizedBox(width: 4),
                             Text(
-                              "${widget.animedeatils.score}/10 (200k votes)",
+                              "${widget.animedetails.score}/10 (200k votes)",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class AnimeDetailsState extends State<AnimeDetails> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Text(
-              widget.animedeatils.description,
+              widget.animedetails.description,
               style: TextStyle(fontSize: 16),
             ),
           ],

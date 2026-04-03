@@ -32,11 +32,15 @@ class _HomeVoirPlusState extends State<HomeVoirPlus> {
             itemCount: data.length,
             itemBuilder: (context, index) {
               final anime = data[index];
-              return InkWell(
+              return GestureDetector(
                 onTap: () {
+                  // Naviguer vers une page de détails avec les informations de l'anime
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AnimeDetails(anime: anime)),
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          AnimeDetails(anime: anime, animedetails: anime),
+                    ),
                   );
                 },
                 child: Container(

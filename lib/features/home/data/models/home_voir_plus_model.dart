@@ -13,10 +13,10 @@ class HomeVoirPlusModel {
 
   factory HomeVoirPlusModel.fromJson(Map<String, dynamic> json) {
     return HomeVoirPlusModel(
-      title: json['title'] as String,
-      imageUrl: json['images']['jpg']['large_image_url'] as String,
-      description: json['synopsis'] as String,
-      score: (json['score'] as num).toDouble(),
+      title: json['title'] ?? 'No title',
+      imageUrl: json['images']?['jpg']?['large_image_url'] ?? '',
+      description: json['synopsis'] ?? 'No description',
+      score: (json['score'] as num?)?.toDouble() ?? 0.0,
     );
   }
 }
