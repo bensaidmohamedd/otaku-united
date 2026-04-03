@@ -38,7 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.bookmark),
             label: 'Watchlist',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'recherche'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.emoji_events),
+            label: 'Quiz',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: _selectedIndex,
