@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:manga/features/home/data/api/home_voir_plus_api.dart';
 import 'package:manga/features/home/presentation/anime_details.dart';
+import 'package:manga/features/home/data/api/anime_details_api.dart';
 
 class HomeVoirPlus extends StatefulWidget {
   const HomeVoirPlus({super.key});

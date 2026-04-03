@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:manga/features/home/data/models/home_voir_plus_model.dart';
+import 'package:manga/features/home/data/models/anime_details_model.dart';
 
 class AnimeDetails extends StatefulWidget {
-  final HomeVoirPlusModel animedetails;
+  final AnimeDetailsModel animedetails;
 
-  const AnimeDetails({super.key, required this.animedetails, required HomeVoirPlusModel anime});
+  const AnimeDetails({
+    super.key,
+    required this.animedetails,
+    required AnimeDetailsModel anime,
+  });
 
   @override
   State<AnimeDetails> createState() => AnimeDetailsState();
@@ -93,7 +97,7 @@ class AnimeDetailsState extends State<AnimeDetails> {
                             Icon(Icons.star, color: Colors.amber, size: 16),
                             SizedBox(width: 4),
                             Text(
-                              "${widget.animedetails.score}/10 (200k votes)",
+                              "${widget.animedetails.score}/10 (${widget.animedetails.nbVotes} votes)",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
