@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manga/features/profil/presentation/profil_page.dart';
-import 'package:manga/features/search/presentation/search_page.dart';
+import 'package:manga/features/quiz/presentation/quiz_page.dart';
 import 'package:manga/features/watchLists/presentation/watchlist_page.dart';
 import 'home_page.dart';
 
@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> pages = [
     HomePage(),
     WatchlistPage(),
-    SearchPage(),
+    QuizPage(),
     ProfilPage(),
   ];
 
