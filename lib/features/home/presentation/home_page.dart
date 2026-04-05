@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:manga/features/home/data/api/home_api.dart';
+import 'package:manga/features/search/presentation/search_page.dart';
 import 'home_voir_plus.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,7 +24,10 @@ class _MyHomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              // Action de recherche
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SearchPage()),
+              );
             },
           ),
         ],
