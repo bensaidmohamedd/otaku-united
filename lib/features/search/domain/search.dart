@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:manga/features/home/data/models/anime_details_model.dart';
+import 'package:manga/features/home/presentation/anime_details.dart';
 import 'package:manga/features/search/data/search_api.dart';
-import 'package:manga/features/home/data/models/home_model.dart';
 
 class AnimeSearchDelegate extends SearchDelegate {
   @override
@@ -30,7 +31,7 @@ class AnimeSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return FutureBuilder<List<HomeModel>>(
+    return FutureBuilder<List<AnimeDetailsModel>>(
       future: searchAnime(query),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -89,27 +90,39 @@ class AnimeSearchDelegate extends SearchDelegate {
             childAspectRatio: 0.6,
             children: List.generate(results.length, (index) {
               final anime = results[index];
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        anime.imageUrl,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
+              return GestureDetector(
+                onTap: () {
+                  // Naviguer vers une page de détails avec les informations de l'anime
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          AnimeDetails(anime: anime, animedetails: anime),
+                    ),
+                  );
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          anime.imageUrl,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    anime.title,
-                    maxLines: 2,
-                    style: const TextStyle(fontSize: 12),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+                    const SizedBox(height: 5),
+                    Text(
+                      anime.title,
+                      maxLines: 2,
+                      style: const TextStyle(fontSize: 12),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               );
             }),
           ),

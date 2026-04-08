@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:manga/features/home/data/api/home_api.dart';
+import 'package:manga/features/home/data/api/anime_details_api.dart';
+import 'package:manga/features/home/presentation/anime_details.dart';
 import 'package:manga/features/search/domain/search.dart';
 import 'home_voir_plus.dart';
 
@@ -163,27 +164,39 @@ class _MyHomePageState extends State<HomePage> {
                   childAspectRatio: 0.6,
                   children: List.generate(6, (index) {
                     final anime = data[index];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              anime.imageUrl,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
+                    return GestureDetector(
+                      onTap: () {
+                        // Naviguer vers une page de détails avec les informations de l'anime
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AnimeDetails(anime: anime, animedetails: anime),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                anime.imageUrl,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          anime.title,
-                          maxLines: 2,
-                          style: const TextStyle(fontSize: 12),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+                          const SizedBox(height: 5),
+                          Text(
+                            anime.title,
+                            maxLines: 2,
+                            style: const TextStyle(fontSize: 12),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     );
                   }),
                 );

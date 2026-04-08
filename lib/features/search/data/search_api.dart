@@ -1,10 +1,10 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-import 'package:manga/features/home/data/models/home_model.dart';
+import 'package:manga/features/home/data/models/anime_details_model.dart';
 
 final String apiUrl = 'https://api.jikan.moe/v4/seasons/now';
 
-Future<List<HomeModel>> searchAnime(String query) async {
+Future<List<AnimeDetailsModel>> searchAnime(String query) async {
   try {
     final response = await http.get(
       Uri.parse(apiUrl),
@@ -15,8 +15,8 @@ Future<List<HomeModel>> searchAnime(String query) async {
         response.body,
       );
       final List list = jsonResponse['data'];
-      final List<HomeModel> homeAnime = list
-          .map((item) => HomeModel.fromJson(item))
+      final List<AnimeDetailsModel> homeAnime = list
+          .map((item) => AnimeDetailsModel.fromJson(item))
           .toList();
       return homeAnime;
     } else {
