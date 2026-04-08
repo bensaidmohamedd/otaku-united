@@ -60,23 +60,59 @@ class AnimeSearchDelegate extends SearchDelegate {
           );
         }
 
-        return ListView.builder(
-          itemCount: results.length,
-          itemBuilder: (context, index) {
-            final anime = results[index];
-            return ListTile(
-              leading: Image.network(
-                anime.imageUrl,
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-              ),
-              title: Text(anime.title),
-              onTap: () {
-                // Naviguer vers la page de détails de l'anime
-              },
-            );
-          },
+        // return ListView.builder(
+        //   itemCount: results.length,
+        //   itemBuilder: (context, index) {
+        //     final anime = results[index];
+        //     return ListTile(
+        //       leading: Image.network(
+        //         anime.imageUrl,
+        //         width: 50,
+        //         height: 50,
+        //         fit: BoxFit.cover,
+        //       ),
+        //       title: Text(anime.title),
+        //       onTap: () {
+        //         // Naviguer vers la page de détails de l'anime
+        //       },
+        //     );
+        //   },
+        // );
+        return SingleChildScrollView(
+          child: GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(16),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            crossAxisCount: 3,
+            childAspectRatio: 0.6,
+            children: List.generate(results.length, (index) {
+              final anime = results[index];
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        anime.imageUrl,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    anime.title,
+                    maxLines: 2,
+                    style: const TextStyle(fontSize: 12),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              );
+            }),
+          ),
         );
       },
     );
