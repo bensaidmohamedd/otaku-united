@@ -49,13 +49,27 @@ class _MyHomePageState extends State<HomePage> {
                   children: [
                     CarouselSlider(
                       items: data.take(5).map((anime) {
-                        return Container(
-                          margin: const EdgeInsets.all(5.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(
-                              image: NetworkImage(anime.imageUrl),
-                              fit: BoxFit.cover,
+                        return GestureDetector(
+                          onTap: () {
+                            // Naviguer vers une page de détails avec les informations de l'anime
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AnimeDetails(
+                                  anime: anime,
+                                  animedetails: anime,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.all(5.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              image: DecorationImage(
+                                image: NetworkImage(anime.imageUrl),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         );

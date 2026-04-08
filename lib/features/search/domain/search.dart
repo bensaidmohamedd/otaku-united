@@ -60,25 +60,6 @@ class AnimeSearchDelegate extends SearchDelegate {
             ),
           );
         }
-
-        // return ListView.builder(
-        //   itemCount: results.length,
-        //   itemBuilder: (context, index) {
-        //     final anime = results[index];
-        //     return ListTile(
-        //       leading: Image.network(
-        //         anime.imageUrl,
-        //         width: 50,
-        //         height: 50,
-        //         fit: BoxFit.cover,
-        //       ),
-        //       title: Text(anime.title),
-        //       onTap: () {
-        //         // Naviguer vers la page de détails de l'anime
-        //       },
-        //     );
-        //   },
-        // );
         return SingleChildScrollView(
           child: GridView.count(
             shrinkWrap: true,
