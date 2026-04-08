@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:manga/features/home/data/api/anime_details_api.dart';
+import 'package:manga/features/home/data/models/anime_details_model.dart';
 import 'package:manga/features/home/presentation/anime_details.dart';
 import 'package:manga/features/search/domain/search.dart';
 import 'home_voir_plus.dart';
@@ -15,6 +16,14 @@ class HomePage extends StatefulWidget {
 class _MyHomePageState extends State<HomePage> {
   final CarouselSliderController _controller = CarouselSliderController();
   int _current = 0;
+
+  late Future<List<AnimeDetailsModel>> _animeData;
+
+  @override
+  void initState() {
+    _animeData = fetchAnimeData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +43,7 @@ class _MyHomePageState extends State<HomePage> {
         child: Column(
           children: [
             FutureBuilder(
-              future: fetchAnimeData(),
+              future: _animeData,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Text("Erreur: ${snapshot.error}");
@@ -157,7 +166,7 @@ class _MyHomePageState extends State<HomePage> {
             const SizedBox(height: 10),
 
             FutureBuilder(
-              future: fetchAnimeData(),
+              future: _animeData,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Text("Erreur: ${snapshot.error}");
