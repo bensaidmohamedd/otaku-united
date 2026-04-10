@@ -8,7 +8,13 @@ class QuizPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Quiz')),
       body: const Center(
-        child: Text('Page de Quiz', style: TextStyle(fontSize: 24)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.emoji_events, size: 100, color: Colors.blue),
+            Text('Les quiz arrivent bientôt !', style: TextStyle(fontSize: 24)),
+          ],
+        ),
       ),
     );
   }
