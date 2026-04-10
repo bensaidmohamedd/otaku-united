@@ -1,4 +1,5 @@
 class AnimeDetailsModel {
+  final int id;
   final String title;
   final String imageUrl;
   final String description;
@@ -6,6 +7,7 @@ class AnimeDetailsModel {
   final int nbVotes;
 
   AnimeDetailsModel({
+    required this.id,
     required this.title,
     required this.imageUrl,
     required this.description,
@@ -15,6 +17,7 @@ class AnimeDetailsModel {
 
   factory AnimeDetailsModel.fromJson(Map<String, dynamic> json) {
     return AnimeDetailsModel(
+      id: json['mal_id'] as int? ?? 0,
       title: json['title'] ?? 'No title',
       imageUrl: json['images']?['jpg']?['large_image_url'] ?? '',
       description: json['synopsis'] ?? 'No description',

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:manga/features/home/data/models/anime_details_model.dart';
+import 'package:manga/features/watchlists/presentation/state/watchlist_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnimeDetails extends StatefulWidget {
+class AnimeDetails extends ConsumerStatefulWidget {
   final AnimeDetailsModel animedetails;
 
   const AnimeDetails({
@@ -11,12 +13,14 @@ class AnimeDetails extends StatefulWidget {
   });
 
   @override
-  State<AnimeDetails> createState() => AnimeDetailsState();
+  ConsumerState<ConsumerStatefulWidget> createState() => AnimeDetailsState();
 }
 
-class AnimeDetailsState extends State<AnimeDetails> {
+class AnimeDetailsState extends ConsumerState<AnimeDetails> {
   @override
   Widget build(BuildContext context) {
+    final watchlist = ref.watch(watchlistProvider);
+    final isSaved = watchlist.any((a) => a.id == widget.animedetails.id);
     return Scaffold(
       appBar: AppBar(title: Text('Détails de l\'anime')),
       body: SingleChildScrollView(
@@ -55,12 +59,25 @@ class AnimeDetailsState extends State<AnimeDetails> {
                     child: Container(
                       padding: EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.4),
+                        color: Color(0xFFE53935).withOpacity(0.4),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
-                        icon: Icon(Icons.bookmark_border, color: Colors.white),
-                        onPressed: () {},
+                        icon: Icon(
+                          isSaved ? Icons.bookmark : Icons.bookmark_border,
+                          color: Color(0xFFE53935),
+                        ),
+                        onPressed: () {
+                          if (isSaved) {
+                            ref
+                                .read(watchlistProvider.notifier)
+                                .removeFromWatchlist(widget.animedetails.id);
+                          } else {
+                            ref
+                                .read(watchlistProvider.notifier)
+                                .addToWatchlist(widget.animedetails);
+                          }
+                        },
                       ),
                     ),
                   ),
