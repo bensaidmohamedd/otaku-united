@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga/features/home/presentation/anime_details.dart';
 import 'package:manga/features/watchlists/presentation/state/watchlist_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,15 +26,27 @@ class WatchlistPage extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final anime = watchlist[index];
 
-                return Column(
-                  children: [
-                    Expanded(child: Image.network(anime.imageUrl)),
-                    Text(
-                      anime.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
+                return GestureDetector(
+                  onTap: () {
+                    // Naviguer vers une page de détails avec les informations de l'anime
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            AnimeDetails(anime: anime, animedetails: anime),
+                      ),
+                    );
+                  },
+                  child: Column(
+                    children: [
+                      Expanded(child: Image.network(anime.imageUrl)),
+                      Text(
+                        anime.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
