@@ -45,6 +45,9 @@ class _MyHomePageState extends State<HomePage> {
             FutureBuilder(
               future: _animeData,
               builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
                 if (snapshot.hasError) {
                   return Text("Erreur: ${snapshot.error}");
                 }
@@ -168,6 +171,9 @@ class _MyHomePageState extends State<HomePage> {
             FutureBuilder(
               future: _animeData,
               builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
                 if (snapshot.hasError) {
                   return Text("Erreur: ${snapshot.error}");
                 }
