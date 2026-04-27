@@ -21,7 +21,7 @@ class _HomeVoirPlusState extends State<HomeVoirPlus> {
             return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
-            return Center(child: Text("Erreur: ${snapshot.error}"));
+            return const Center(child: Text("veillez utliser une connexion internet"));
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text("Aucune donnée"));

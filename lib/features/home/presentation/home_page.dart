@@ -49,7 +49,7 @@ class _MyHomePageState extends State<HomePage> {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snapshot.hasError) {
-                  return Text("Erreur: ${snapshot.error}");
+                  return Text("veillez utliser une connexion internet");
                 }
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Text("Aucune donnée");
@@ -175,7 +175,7 @@ class _MyHomePageState extends State<HomePage> {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snapshot.hasError) {
-                  return Text("Erreur: ${snapshot.error}");
+                  return const Text("veillez utliser une connexion internet");
                 }
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Text("Aucune donnée");
