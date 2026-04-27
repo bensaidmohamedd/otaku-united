@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:manga/features/watchlists/presentation/page/watchlist_page.dart';
+import 'package:manga/features/watchlists/presentation/state/watchlist_state.dart';
 
-class ProfilPage extends StatelessWidget {
+class ProfilPage extends ConsumerWidget {
   const ProfilPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final count = ref.watch(watchlistProvider).length;
     return Scaffold(
       appBar: AppBar(title: const Text("Profil"), centerTitle: true),
       body: Padding(
@@ -34,7 +37,7 @@ class ProfilPage extends StatelessWidget {
             // Stats
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [_StatItem(title: "Watchlist", value: "07")],
+              children: [_StatItem(title: "Watchlist", value: '$count')],
             ),
 
             const SizedBox(height: 30),

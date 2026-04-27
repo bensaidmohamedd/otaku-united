@@ -7,9 +7,12 @@ class WatchlistState extends Notifier<List<AnimeDetailsModel>> {
     return [];
   }
 
+  int get count => state.length;
+
   void addToWatchlist(AnimeDetailsModel anime) {
     if (!state.any((a) => a.id == anime.id)) {
       state = [...state, anime];
+
     }
   }
 

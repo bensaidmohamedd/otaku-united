@@ -59,7 +59,7 @@ class AnimeDetailsState extends ConsumerState<AnimeDetails> {
                     child: Container(
                       padding: EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        color: Color(0xFFE53935).withOpacity(0.4),
+                        color: Colors.white,
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
